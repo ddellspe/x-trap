@@ -29,8 +29,7 @@ import ConfigParser
 from numpy import *
 from scipy import *
 from math import *
-#import AffineTransform  # old affine transform
-import AffineTransform2 # new affine transform
+import AffineTransform # new affine transform
 import dicomViewer
 import traceback
 
@@ -524,12 +523,9 @@ class guiStuff:
         
         from_pts = ((plan_command[3], plan_command[4]), (plan_command[5], plan_command[6]), (plan_command[7], plan_command[8]))
         to_pts = ((-guiStuff.tubeDimension[0]/2,0),(0,guiStuff.tubeDimension[0]/2),(guiStuff.tubeDimension[0]/2,0)) 
-        #trn = AffineTransform.AffineTransform(from_pts, to_pts)
-        #helicalFiducial=trn.Transform((plan_command[9],plan_command[10]))  # old affine transform method
-        trn = AffineTransform2.AffineTransform2(from_pts, to_pts)
+        trn = AffineTransform.AffineTransform(from_pts, to_pts)
         helicalFiducial=trn.Transform(plan_command[9], plan_command[10])
         zTarget = -1 * (numpy.arctan2(helicalFiducial[1], helicalFiducial[0]) * 180 / numpy.pi) / 180 * guiStuff.tubeDimension[1] #the helical fiducial starts at 0 degrees and moves to -180 degrees as the helix progresses toward the tube connection to the stages
-        # xyTarget=trn.Transform((plan_command[0],plan_command[1]))
         xyTarget=trn.Transform(plan_command[0],plan_command[1])
         target=[-xyTarget[0]]+[-xyTarget[1]]+[zTarget]+[plan_command[2]]
         return target    
