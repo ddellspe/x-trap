@@ -52,8 +52,8 @@ class guiStuff:
     planListCommand = [['x', 'y', 'degree', '9 o\'clock x', '9 o\'clock y', '6 o\'clock x', '6 o\'clock y', '3 o\'clock x', '3 o\'clock y', 'helix x', 'helix y']]
     planCurrentCommand = [] #for order see header of planListCommand (above)
     listIndex = 0 #index of active command in a list
-    zeroPosition = [ 30.414, 30.407, 11.164 , 180.0] # [x zero, y zero , z zero, rotation zero]
-    defaultZeroPosition = [ 30.414, 30.407, 11.164 , 180.0]
+    zeroPosition = [ 30.544, 30.277, 11.164 , 180.0] # [x zero, y zero , z zero, rotation zero]
+    defaultZeroPosition = [ 30.544, 30.277, 11.164 , 180.0]
     tubeDimension=[31.75,116.000] #[diameter, tube length] all lengths in mm
     defaultTubeDimension=[31.75,116.000] 
     version = [1,5,1,0]
@@ -933,7 +933,7 @@ class guiStuff:
         return
     
     def refreshCurrentPosition(self):
-        self.disable()
+        #self.disable()
         thread.start_new_thread(serialCommands.updatePositionLabel, (self.ser, self.zCurrentVar, self.degCurrentVar, self.xCurrentVar, self.yCurrentVar, self.zeroPosition, self))
     
     def moveTabChanged(self, event):
