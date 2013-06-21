@@ -20,6 +20,7 @@ import numpy
 from tkSimpleDialog import Dialog
 import webbrowser
 import os
+import sys
 import serialCommands
 import thread
 import moveCommands 
@@ -27,6 +28,7 @@ import HeightSelector
 import ConfigParser
 from numpy import *
 from scipy import *
+from math import *
 import AffineTransform # new affine transform
 import dicomViewer
 import traceback
